@@ -1,0 +1,76 @@
+BEGIN
+
+    // Check if all required fields are filled
+    IF name is empty OR
+       age is empty OR
+       reason for visit is empty OR
+       patient type is empty THEN
+
+        DISPLAY "Please fill in all fields."
+        STOP
+    END IF
+
+
+    // Get patient type
+    patientType 
+
+
+    // Determine priority
+    IF patientType is "Emergency" THEN
+        priority ← "EMERGENCY"
+
+    ELSE IF patientType is "Senior" THEN
+        priority ← "SENIOR PRIORITY"
+
+    ELSE IF patientType is "Pregnant" THEN
+        priority ← "PRIORITY"
+
+    ELSE IF patientType is "Regular" THEN
+        priority ← "REGULAR"
+
+    ELSE
+        DISPLAY "Invalid patient type."
+        DISPLAY "Please select: Regular, Senior, Pregnant, or Emergency."
+        STOP
+    END IF
+
+
+    // Create queue number
+    queueNumberText ← "Q" + FORMAT(queueNumber, "000")
+
+
+    // Create patient information
+    patient ← queueNumberText + " | " +
+               name + " | " +
+               age + " | " +
+               reason for visit + " | " +
+               patientType + " | " +
+               priority
+
+
+    // Add patient to queue
+    ENQUEUE patient INTO patientQueue
+
+
+    // Increase queue number
+    queueNumber ← queueNumber + 1
+
+
+    // Display successful message
+    DISPLAY "Successfully added to queue!"
+    DISPLAY "Queue Number: " + queueNumberText
+    DISPLAY "Priority: " + priority
+
+
+    // Clear all input fields
+    CLEAR name
+    CLEAR age
+    CLEAR reason for visit
+    CLEAR patient type
+
+
+    // Set focus to name field
+    FOCUS name
+
+
+END
